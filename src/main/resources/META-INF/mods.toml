@@ -1,0 +1,40 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+
+[[mods]]
+modId = "ae2cc"
+version = "${file.jarVersion}"
+displayName = "AE2CC Bridge Forge"
+description = '''
+A bridge between Applied Energistics 2 and ComputerCraft for Forge.
+Allows ComputerCraft computers to access AE2 ME systems.
+'''
+
+[[dependencies.ae2cc]]
+    modId = "forge"
+    mandatory = true
+    versionRange = "[47,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.ae2cc]]
+    modId = "minecraft"
+    mandatory = true
+    versionRange = "[1.20.1,1.21)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.ae2cc]]
+    modId = "ae2"
+    mandatory = true
+    versionRange = "[15.0.0,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.ae2cc]]
+    modId = "computercraft"
+    mandatory = true
+    versionRange = "[1.116.0,)"
+    ordering = "NONE"
+    side = "BOTH"

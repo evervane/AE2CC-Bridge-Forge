@@ -1,0 +1,28 @@
+# Build output
+build/
+out/
+
+# Gradle
+.gradle/
+gradle/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.eclipse/
+.settings/
+.classpath
+.project
+bin/
+
+# Local libs (download these yourself)
+libs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Minecraft runtime
+run/
