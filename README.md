@@ -1,6 +1,6 @@
 # AE2CC Bridge Forge
 
-A bridge between [Applied Energistics 2](https://github.com/AppliedEnergistics/Applied-Energistics-2) and [ComputerCraft](https://github.com/cc-tweaked/CC-Tweaked) for Forge 1.20.1. Allows ComputerCraft computers to read and interact with AE2 ME storage systems.
+A Forge port of [AE2CC Bridge](https://github.com/TheMrMilchmann/AE2CCBridge) — allows [ComputerCraft](https://github.com/cc-tweaked/CC-Tweaked) computers to access [Applied Energistics 2](https://github.com/AppliedEnergistics/Applied-Energistics-2) ME systems.
 
 ## Features
 
@@ -61,6 +61,11 @@ Iron  Redstone  Iron
 | `getAllCraftingRequests()` | Returns all active crafting requests |
 | `scheduleCrafting(type, id, amount)` | Schedules a crafting job (`type`: "item" or "fluid") |
 | `getStatus()` | Returns adapter connection status |
+
+## Acknowledgments
+
+- Original Fabric version: [AE2CC Bridge](https://github.com/TheMrMilchmann/AE2CCBridge) by [TheMrMilchmann](https://github.com/TheMrMilchmann)
+- Forge fork: [PowerAE2CC Bridge](https://github.com/GameModsBR/PowerAE2CCBridge) by [GameModsBR](https://github.com/GameModsBR)
 
 ## License
 
