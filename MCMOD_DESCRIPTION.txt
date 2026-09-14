@@ -9,6 +9,7 @@ AE2CC Bridge Forge 是 Applied Energistics 2 与 ComputerCraft 的 Forge 版桥�
 [*]查询可合成物品列表
 [*]从 Lua 脚本安排合成任务
 [*]实时监控合成 CPU 状态与进度
+[*]被动合成事件监控（ae2cc:network_crafting_update）
 [/list]
 
 [b]合成配方[/b]

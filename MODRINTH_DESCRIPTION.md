@@ -8,6 +8,7 @@ A Forge port that allows **ComputerCraft** computers to read and interact with *
 - Query craftable items
 - Schedule crafting jobs directly from Lua
 - Monitor crafting CPU status and progress in real-time
+- Passive crafting event monitoring (ae2cc:network_crafting_update)
 
 ### Quick Start
 

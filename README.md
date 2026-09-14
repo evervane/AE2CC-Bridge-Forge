@@ -8,6 +8,7 @@ A Forge port of [AE2CC Bridge](https://github.com/TheMrMilchmann/AE2CCBridge) â€
 - Query craftable items
 - Schedule crafting jobs from ComputerCraft
 - Monitor crafting CPU status and progress
+- Passive crafting event monitoring (ae2cc:network_crafting_update)
 
 ## Requirements
 
@@ -61,6 +62,24 @@ Iron  Redstone  Iron
 | `getAllCraftingRequests()` | Returns all active crafting requests |
 | `scheduleCrafting(type, id, amount)` | Schedules a crafting job (`type`: "item" or "fluid") |
 | `getStatus()` | Returns adapter connection status |
+
+### Events
+
+| Event | Description |
+|---|---|
+| `ae2cc:network_crafting_update` | Fired when crafting activity changes (every 1s) |
+
+Example:
+```lua
+while true do
+    local event, data = os.pullEvent("ae2cc:network_crafting_update")
+    if data and #data > 0 then
+        for _, job in ipairs(data) do
+            print(job.systemID .. " x" .. job.amount)
+        end
+    end
+end
+```
 
 ## Acknowledgments
 
