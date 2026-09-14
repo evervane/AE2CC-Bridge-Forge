@@ -58,6 +58,9 @@ public class AE2CCAdapterBlockEntity extends AENetworkBlockEntity implements ICr
 
     private final AdapterPeripheral peripheral = new AdapterPeripheral();
 
+    private List<Map<String, Object>> lastCraftingSnapshot = new ArrayList<>();
+    private int craftingCheckCooldown = 0;
+
     public AE2CCAdapterBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(ModBlockEntities.ADAPTER.get(), blockPos, blockState);
 
@@ -74,6 +77,19 @@ public class AE2CCAdapterBlockEntity extends AENetworkBlockEntity implements ICr
     private void tickInternal() {
         IGridNode node = this.getGridNode();
         if (node == null || node.getGrid() == null) return;
+
+        if (++this.craftingCheckCooldown >= 20) {
+            this.craftingCheckCooldown = 0;
+            try {
+                List<Map<String, Object>> current = buildCraftingSnapshot(node.getGrid());
+                if (!current.equals(this.lastCraftingSnapshot)) {
+                    this.lastCraftingSnapshot = current;
+                    this.peripheral.notify("ae2cc:network_crafting_update", current);
+                }
+            } catch (Exception e) {
+                LOGGER.warn("Failed to check crafting snapshot", e);
+            }
+        }
 
         this.pendingJobLock.lock();
         try {
@@ -192,6 +208,22 @@ public class AE2CCAdapterBlockEntity extends AENetworkBlockEntity implements ICr
     public TickRateModulation tickingRequest(IGridNode node, int tickCount) {
         tickInternal();
         return TickRateModulation.SAME;
+    }
+
+    private List<Map<String, Object>> buildCraftingSnapshot(IGrid grid) {
+        return grid.getCraftingService().getCpus().stream()
+            .flatMap(cpu -> {
+                CraftingJobStatus jobStatus = cpu.getJobStatus();
+                if (jobStatus == null) return Stream.empty();
+                GenericStack stack = jobStatus.crafting();
+                if (stack == null) return Stream.empty();
+                return Stream.of(Map.<String, Object>of(
+                    "systemID", stack.what().getId().toString(),
+                    "displayName", stack.what().getDisplayName().getString(),
+                    "amount", stack.amount()
+                ));
+            })
+            .toList();
     }
 
     @Override
