@@ -1,0 +1,61 @@
+AE2CC Bridge Forge 是 Applied Energistics 2 与 ComputerCraft 的 Forge 版桥接模组。该模组添加了一个适配器方块，允许 ComputerCraft 电脑通过 Lua 脚本访问 AE2 ME 存储系统。
+
+[i]注：本模组为 Forge 移植版本。Fabric 版本请参阅：[/i][url=https://www.mcmod.cn/class/18823.html]AE2CC Bridge[/url]
+
+[b]功能[/b]
+
+[list]
+[*]读取 ME 系统中存储的所有物品与流体
+[*]查询可合成物品列表
+[*]从 Lua 脚本安排合成任务
+[*]实时监控合成 CPU 状态与进度
+[/list]
+
+[b]合成配方[/b]
+
+铁锭 | 红石 | 铁锭
+红石 | 玻璃 | 红石
+铁锭 | 红石 | 铁锭
+
+[b]Lua API[/b]
+
+[table]
+[tr][td]函数[/td][td]说明[/td][/tr]
+[tr][td]getAvailableObjects()[/td][td]获取 ME 系统中所有物品与流体[/td][/tr]
+[tr][td]getCraftableObjects()[/td][td]获取可合成物品列表[/td][/tr]
+[tr][td]getCraftingCPUs()[/td][td]获取合成 CPU 信息[/td][/tr]
+[tr][td]getIssuedCraftingJobs()[/td][td]获取已发出的合成任务[/td][/tr]
+[tr][td]getAllCraftingRequests()[/td][td]获取所有进行中的合成请求[/td][/tr]
+[tr][td]scheduleCrafting(type, id, amount)[/td][td]安排合成任务（type 为 item 或 fluid）[/td][/tr]
+[tr][td]getStatus()[/td][td]检查适配器连接状态[/td][/tr]
+[/table]
+
+[b]使用方法[/b]
+
+[list=1]
+[*]合成适配器方块
+[*]将方块放置在 AE2 ME 线缆旁边
+[*]通过有线调制解调器连接 ComputerCraft 电脑
+[*]在 Lua 中使用 peripheral.wrap() 或 peripheral.find() 访问
+[/list]
+
+[b]示例代码[/b]
+
+[insertcode]
+local ae2 = peripheral.wrap("right")
+local items = ae2.getAvailableObjects()
+ae2.scheduleCrafting("item", "minecraft:diamond", 64)
+[/insertcode]
+
+[b]前置模组[/b]
+
+[list]
+[*]Applied Energistics 2 (15.x)
+[*]CC:Tweaked (1.120.x)
+[/list]
+
+[b]相关链接[/b]
+
+Fabric 版本：https://www.mcmod.cn/class/18823.html
+GitHub：https://github.com/evervane/AE2CC-Bridge-Forge
+Modrinth：https://modrinth.com/mod/ae2cc-bridge-forge

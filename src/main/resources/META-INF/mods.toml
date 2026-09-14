@@ -4,8 +4,10 @@ license = "MIT"
 
 [[mods]]
 modId = "ae2cc"
-version = "${file.jarVersion}"
+version = "1.0.0"
 displayName = "AE2CC Bridge Forge"
+authors = "Shining"
+displayURL = "https://github.com/evervane/AE2CC-Bridge-Forge"
 description = '''
 A bridge between Applied Energistics 2 and ComputerCraft for Forge.
 Allows ComputerCraft computers to access AE2 ME systems.
