@@ -67,16 +67,37 @@ Iron  Redstone  Iron
 
 | Event | Description |
 |---|---|
-| `ae2cc:network_crafting_update` | Fired when crafting activity changes (every 1s) |
+| `ae2cc:network_crafting_update` | Fired when any crafting activity changes (every 1s) |
+| `ae2cc:crafting_started` | Fired when your scheduled crafting job begins |
+| `ae2cc:crafting_done` | Fired when your scheduled crafting job completes |
+| `ae2cc:crafting_cancelled` | Fired when your scheduled crafting job fails |
+
+**crafting_cancelled error codes:** `CANCELLED`, `CPU_NOT_FOUND`, `INCOMPLETE_PLAN`, `NO_CPU_FOUND`, `NO_SUITABLE_CPU_FOUND`, `CPU_BUSY`, `CPU_OFFLINE`, `CPU_TOO_SMALL`, `MISSING_INGREDIENT`
 
 Example:
 ```lua
+-- Passive monitoring (any crafting in the network)
 while true do
     local event, data = os.pullEvent("ae2cc:network_crafting_update")
     if data and #data > 0 then
         for _, job in ipairs(data) do
             print(job.systemID .. " x" .. job.amount)
         end
+    end
+end
+
+-- Scheduled job events
+local jobID = ae2.scheduleCrafting("item", "minecraft:diamond", 64)
+while true do
+    local event, id, reason = os.pullEvent()
+    if event == "ae2cc:crafting_started" and id == jobID then
+        print("Crafting started!")
+    elseif event == "ae2cc:crafting_done" and id == jobID then
+        print("Crafting done!")
+        break
+    elseif event == "ae2cc:crafting_cancelled" and id == jobID then
+        print("Failed: " .. (reason or "unknown"))
+        break
     end
 end
 ```

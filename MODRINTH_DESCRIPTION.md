@@ -50,6 +50,15 @@ Iron  | Redstone | Iron
 | `scheduleCrafting(type, id, amount)` | Schedule a crafting job |
 | `getStatus()` | Check adapter connection status |
 
+### Events
+
+| Event | Description |
+|---|---|
+| `ae2cc:network_crafting_update` | Any crafting activity changes (every 1s) |
+| `ae2cc:crafting_started` | Your scheduled crafting job begins |
+| `ae2cc:crafting_done` | Your scheduled crafting job completes |
+| `ae2cc:crafting_cancelled` | Your scheduled crafting job fails |
+
 ### License
 
 MIT License
