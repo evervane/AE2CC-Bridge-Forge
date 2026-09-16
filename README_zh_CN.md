@@ -1,5 +1,7 @@
 # AE2CC Bridge Forge
 
+[English](README.md)
+
 AE2CC Bridge 的 Forge 移植版本 —— 允许 ComputerCraft 电脑访问 Applied Energistics 2 ME 存储系统。
 
 ## 功能

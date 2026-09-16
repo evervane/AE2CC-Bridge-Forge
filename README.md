@@ -1,5 +1,7 @@
 # AE2CC Bridge Forge
 
+[中文说明](README_zh_CN.md)
+
 A Forge port of [AE2CC Bridge](https://github.com/TheMrMilchmann/AE2CCBridge) — allows [ComputerCraft](https://github.com/cc-tweaked/CC-Tweaked) computers to access [Applied Energistics 2](https://github.com/AppliedEnergistics/Applied-Energistics-2) ME systems.
 
 ## Features
